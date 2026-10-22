@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; require-trusted-types-for 'script'">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>送る予定 ─ 節目のカード</title>
+<meta name="description" content="カードを、あとで送るための予定。時間になったら、スマホのカレンダーが知らせます。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="送る予定 ─ 節目のカード">
+<meta property="og:description" content="カードを、あとで送るための予定です。">
+<link rel="stylesheet" href="yotei.css">
+<script type="module" src="yotei.js"></script>
+</head>
+<body>
+<main class="wrap">
+  <header class="top"><p class="kicker">送る予定</p></header>
+
+  <section id="lineBox" class="box line" hidden>
+    <p>LINE の中で開いています。カレンダーに入れるには、ブラウザで開きなおしてね。</p>
+    <button type="button" id="btnReopen" class="btn">ブラウザで開きなおす</button>
+  </section>
+
+  <section id="vBroken" hidden>
+    <h1 class="h1">この予定のリンクは、読めませんでした</h1>
+    <p class="lead">リンクが途中で切れたか、形がちがうようです。予定を作った時の控え（カレンダーの予定・Keepメモ）から、もう一度開いてね。</p>
+    <p><a id="lnNew" class="btn ghost" href="./">新しく予定をつくる</a></p>
+  </section>
+
+  <section id="vMake" hidden>
+    <h1 class="h1">あとで送る</h1>
+    <p class="lead">時間になったら、スマホのカレンダーが知らせます。送るのは、そのときに、あなたが LINE で送ります（自動では送りません）。</p>
+
+    <div id="mkPaste" class="box" hidden>
+      <p class="tiny">送りたいカードのリンクを貼ってね（LINE の吹き出しを、まるごと貼ってもだいじょうぶ）。</p>
+      <textarea id="pasteText" rows="3" aria-label="カードのリンク"></textarea>
+      <button type="button" id="btnPaste" class="btn">読みこむ</button>
+    </div>
+
+    <div id="mkCard" class="box" hidden>
+      <p class="tiny">送るカード</p>
+      <p id="mkCardName" class="cardname"></p>
+      <p id="mkCardTitle" class="cardtitle"></p>
+      <p><a id="mkCardOpen" class="linkbtn" href="./" target="_blank" rel="noopener noreferrer">カードを見る ›</a></p>
+    </div>
+
+    <form id="mkForm" autocomplete="off" hidden>
+      <div class="two">
+        <label>送る日<input name="day" type="date" required></label>
+        <label>時刻<input name="time" type="time" required></label>
+      </div>
+      <label>予定の名前<input name="n" maxlength="16" placeholder="例：年賀"></label>
+      <fieldset class="who">
+        <legend>だれに</legend>
+        <p class="tiny">あて名はカードに入ります。メモは自分だけに見えます（相手には見えません）。<br>だれも書かなければ、あて名なしの同じカードを、まとめて1回で送ります。</p>
+        <div id="rows"></div>
+        <button type="button" id="btnAddRow" class="btn ghost small">＋ 1人たす</button>
+      </fieldset>
+      <p class="note">予定のリンクには、相手の名前（あて名・メモ）が入ります。リンクは、あなたのカレンダーの中だけに入れて、人には送らないでね。サーバーには何も保存しません。</p>
+      <button type="submit" class="btn main">予定をつくる</button>
+      <p id="mkMsg" class="msg" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section id="vDone" hidden>
+    <h1 class="h1">予定ができました</h1>
+    <p id="dnSummary" class="summary"></p>
+    <div class="acts">
+      <button type="button" id="btnIcs" class="btn main">カレンダーに入れる（.ics）</button>
+      <p class="tiny">iPhone：ボタンのあと、「カレンダーに追加」を押します。<br>Android：書き出したファイルを開いて、カレンダーに入れます（入らない時は、下の「控え」を使って、予定は自分で入れてね）。</p>
+      <p class="tiny">はじめての時は、カレンダーの予定を開いて、「通知」が「予定の時刻」になっているか見てね。</p>
+      <a id="lnKeep" class="btn ghost" href="https://line.me/R/share" target="_blank" rel="noopener noreferrer">控えを LINE の Keepメモに送る</a>
+      <button type="button" id="btnCopy" class="btn ghost">控えのリンクをコピー</button>
+      <input id="dnUrl" readonly aria-label="予定のリンク">
+      <a id="lnSend" class="linkbtn" href="./">送る画面を見ておく ›</a>
+    </div>
+    <p class="note">予定のリンクには、相手の名前が入っています。人に送らないでね。</p>
+  </section>
+
+  <section id="vSend" hidden>
+    <h1 id="sdTitle" class="h1"></h1>
+    <p id="sdWhen" class="when"></p>
+    <p id="sdCount" class="count"></p>
+    <p id="sdCard" class="sub" hidden></p>
+    <p class="note">これは送る人の控えです。人に送らないでね。</p>
+    <div id="sdAsk" class="box ask" hidden>
+      <p id="sdAskText"></p>
+      <div class="askbtns">
+        <a id="sdAskNext" class="btn main" href="https://line.me/R/share" target="_blank" rel="noopener noreferrer" hidden></a>
+        <button type="button" id="sdAskDone" class="btn" hidden>送れた</button>
+        <button type="button" id="sdAskNot" class="btn ghost">まだ</button>
+      </div>
+    </div>
+    <ol id="sdList" class="list"></ol>
+    <p class="tiny">「LINEで送る」を押すと、LINE の「送信先を選択」が開きます。相手を選んで送ったら、この画面に戻ってね（iPhone は左上の「◀」）。送れた印は、この端末のこのブラウザだけに残ります。</p>
+    <div class="acts">
+      <a id="lnEdit" class="btn ghost" href="./">書きかえる</a>
+    </div>
+  </section>
+
+  <footer class="foot"><p class="credit"><a href="https://ai-naiseika.github.io/" rel="noopener noreferrer">制作：AI内製化工房 MITA ›</a></p></footer>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
