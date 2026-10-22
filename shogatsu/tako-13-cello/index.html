@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja" data-design="shogatsu/tako-13-cello" data-hyogen="cello">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; require-trusted-types-for 'script'">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>正月のカード ─ 凧の行列（セロハン）</title>
+<meta name="description" content="さわるたびに、色の膜の凧が行き交って、重なった所の色が変わる。セロハンの正月のカードです。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="正月のカード ─ 凧の行列（セロハン）">
+<meta property="og:description" content="さわるたびに、色の膜の凧が行き交って、重なった所の色が変わる。セロハンの正月のカードです。">
+<meta property="og:url" content="https://ai-naiseika.github.io/cards/shogatsu/tako-13-cello/">
+<meta property="og:image" content="https://ai-naiseika.github.io/cards/shogatsu/tako-13-cello/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fbe3ee">
+<link rel="stylesheet" href="../../shell/shell.css">
+<script type="module" src="../../shell/shell.js"></script>
+</head>
+<body>
+<main id="app">
+  <header class="top">
+    <p class="kicker" id="kicker">New Year Card</p>
+    <button id="btnSnd" class="round" type="button" aria-pressed="true" aria-label="音">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h3l4-3v10l-4-3H3z" fill="currentColor"/><path class="wave" d="M13 7c1.2 1.6 1.2 4.4 0 6M15.5 5c2.2 2.8 2.2 7.2 0 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <section id="stage" class="stage" aria-label="さわると動く絵">
+    <p id="hint" class="hint" hidden>さわってね</p>
+    <p id="omkBubble" class="bubble" hidden>おみくじ、どうぞ</p>
+    <button id="omkSlip" class="slip" type="button" hidden aria-label="おみくじを引く"><span class="band"></span></button>
+  </section>
+
+  <p class="readnow"><button id="btnRead" class="linkbtn" type="button">すぐ読む</button></p>
+
+  <article id="card" class="card" hidden aria-labelledby="ttl">
+    <p class="sample" id="sampleTag" hidden>見本</p>
+    <h1 class="ttl" id="ttl"></h1>
+    <p class="count" id="count" hidden></p>
+    <dl class="rows" id="rows"></dl>
+    <div class="acts" id="acts"></div>
+  </article>
+
+  <p class="omkbadge" id="omkBadge" hidden><button id="omkAgain" class="chip" type="button">おみくじ：<b id="omkBadgeL"></b> ›</button></p>
+
+  <div class="make">
+    <button id="btnMake" class="pump" type="button">このカードで書く</button>
+    <button id="btnEdit" class="linkbtn" type="button" hidden>このカードを書きかえる</button>
+    <button id="btnBlank" class="linkbtn" type="button" hidden>白紙から書く</button>
+  </div>
+
+  <div class="inline" id="lineBox" hidden>LINEの中で開いています。いつものブラウザで開きなおすと、カレンダーに入れる時などに使いやすくなります（おみくじの記録は、LINEの中とは別になります）。<button type="button" id="btnReopen">ブラウザで開きなおす</button></div>
+
+  <footer class="foot">
+    <details class="terms">
+      <summary>ご利用にあたって</summary>
+      <p>本ツールのご利用は自己責任でお願いします。入力した内容は、あなたのスマホの中だけで処理され、サーバーには保存されません。ただし、作ったリンクの中には入力内容がそのまま入り、リンクを受け取った人には見えます。住所・電話番号など、見せたくない情報は入れないでください。</p>
+      <p>おみくじは遊びです。結果は、カードの中身から作った短い番号と一緒に、この端末にだけ残ります（カードの中身は残りません）。吉の字の並び方は、神社によってちがいます。豆知識は公開されている資料をもとにしていますが、正確さを保証するものではありません。</p>
+      <p>作ったカードを送ること、このページを人に紹介することは、ご自由にどうぞ。このページやプログラムをコピーして別の場所に置くこと、作り変えて配ることは禁止します。著作権は作者に帰属します。</p>
+      <p><button id="btnForget" class="linkbtn" type="button">おみくじの記録を消す</button></p>
+    </details>
+    <p class="credit"><a id="toList" href="../index.html">ほかの絵を見る ›</a></p>
+    <p class="credit"><a id="credit" href="https://ai-naiseika.github.io/" rel="noopener noreferrer">制作：AI内製化工房 MITA ›</a></p>
+  </footer>
+</main>
+
+<div id="omkBack" class="back2" hidden></div>
+<section id="omk" class="omk" hidden role="dialog" aria-modal="true" aria-labelledby="omkH">
+  <p class="omkH" id="omkH">おみくじ</p>
+  <p class="omkL" id="omkL"></p>
+  <p class="omkW" id="omkW"></p>
+  <div class="omkT" id="omkT" hidden>
+    <p class="omkTq">豆知識</p>
+    <p id="omkTa"></p>
+    <p class="omkTs" id="omkTs"></p>
+  </div>
+  <p class="omkN" id="omkN"></p>
+  <button id="omkX" class="pump" type="button">とじる</button>
+</section>
+
+<div id="edBack" class="back2" hidden></div>
+<form id="editor" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="edH" autocomplete="off">
+  <div class="shead"><h2 id="edH">カードを書く</h2><button type="button" id="edX" class="chip">とじる</button></div>
+  <div class="kinds" id="kinds" role="group" aria-label="カードの目的"></div>
+  <p class="tiny" id="kindNote"></p>
+  <p class="note copy" id="edCopyNote" hidden>もらったカードの内容を、<b>コピー</b>しました。<b>もらったカードは、そのまま残ります</b>。差出人とあて名は空にしたので、あなたの名前で書いてね。</p>
+  <p class="note">空欄の項目は、カードに出ません。入力した内容は、リンクの中に入ります（サーバーには保存されません）。送った相手には見えるので、見せたくない情報は入れないでください。</p>
+  <label>題<input name="t" maxlength="28"></label>
+  <label>あて名<input name="to" maxlength="24" placeholder="例：みんな／ゆうこさん"></label>
+  <label class="inv">日にち<input name="d" type="date"></label>
+  <div class="two inv"><label>はじまり<input name="s" type="time"></label><label>おわり<input name="e" type="time"></label></div>
+  <label class="inv">会場の名前<input name="vn" maxlength="40" placeholder="例：わが家／〇〇公民館"></label>
+  <label class="inv">住所・行き方<input name="va" maxlength="60" placeholder="例：〇〇市△△1-2-3　駅から徒歩5分"></label>
+  <label class="inv">連絡先<input name="c" maxlength="60" placeholder="例：LINEで連絡してね"></label>
+  <label>ひとこと<textarea name="m" maxlength="200" rows="4"></textarea></label>
+  <div class="two">
+    <label>差出人<input name="f" maxlength="24" placeholder="例：ゆうこ"></label>
+    <label class="inv" id="dcLabel"><span id="dcName">持ち物</span><input name="dc" maxlength="40"></label>
+    <label class="chk inv"><input type="checkbox" name="rp"><span>参加のお返事を、LINEでもらう</span></label>
+  </div>
+  <div class="edbtns"><button type="button" id="edSample" class="chip">例を入れる</button><button type="submit" class="pump">リンクをつくる</button></div>
+  <div id="edResult" hidden>
+    <p class="ok">できました。このリンクを送ってね。</p>
+    <input id="edUrl" readonly aria-label="カードのリンク">
+    <div class="shares">
+      <a id="shLine" class="sbtn line" href="https://line.me/R/share" target="_blank" rel="noopener noreferrer">LINEで送る</a>
+      <button type="button" id="shCopy" class="sbtn">リンクをコピー</button>
+      <button type="button" id="shNative" class="sbtn" hidden>ほかのアプリで送る</button>
+      <a id="edOpen" class="linkbtn" href="https://line.me/R/share" target="_blank" rel="noopener noreferrer" hidden>つくったカードを、見てみる ›</a>
+    </div>
+  </div>
+  <p class="tiny" id="edMsg" aria-live="polite"></p>
+</form>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
