@@ -155,7 +155,8 @@
   "steps": [
    [
     {
-     "snd": "kotsu"
+     "snd": "kotsu",
+     "p": 1.08
     },
     {
      "l": "hone0",
@@ -274,10 +275,12 @@
    ],
    [
     {
-     "snd": "kotsu"
+     "snd": "kotsu",
+     "p": 1.08
     },
     {
-     "snd": "chin",
+     "snd": "kinpun",
+     "p": 1.08,
      "at": 500
     },
     {
@@ -403,7 +406,8 @@
    ],
    [
     {
-     "snd": "fuwa"
+     "snd": "kinpun",
+     "p": 1.08
     },
     {
      "l": "moji",
@@ -448,7 +452,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "kinpun",
+     "p": 1.08,
      "at": 200
     }
    ]
@@ -482,6 +487,7 @@
   ]
  },
  "omikuji": {
+  "snd": "kinpun",
   "kata": "e",
   "anchor": [
    55.19,
@@ -492,10 +498,7 @@
    10
   ],
   "rot": 7,
-  "bubble": [
-   30,
-   74
-  ],
+  "bubble": "r",
   "dai": "扇みくじ",
   "ink": "#e9c873",
   "inkL": "#f6e3a2",

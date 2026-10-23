@@ -100,7 +100,8 @@
   "steps": [
    [
     {
-     "snd": "paper"
+     "snd": "kasa",
+     "p": 1.04
     },
     {
      "l": "hyoshi",
@@ -124,14 +125,17 @@
    ],
    [
     {
-     "snd": "paper"
+     "snd": "kasa",
+     "p": 1.04
     },
     {
-     "snd": "paper",
+     "snd": "kasa",
+     "p": 1.04,
      "at": 400
     },
     {
-     "snd": "paper",
+     "snd": "kasa",
+     "p": 1.04,
      "at": 800
     },
     {
@@ -156,7 +160,8 @@
    ],
    [
     {
-     "snd": "pon"
+     "snd": "pon",
+     "p": 1.04
     },
     {
      "l": "moji",
@@ -182,7 +187,8 @@
    ],
    [
     {
-     "snd": "paper"
+     "snd": "kasa",
+     "p": 1.04
     },
     {
      "l": "fuda",
@@ -204,7 +210,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "ponpon",
+     "p": 1.04,
      "at": 800
     }
    ]
@@ -238,6 +245,7 @@
   ]
  },
  "omikuji": {
+  "snd": "suzu",
   "kata": "e",
   "anchor": [
    87.04,
@@ -247,10 +255,7 @@
    9,
    16
   ],
-  "bubble": [
-   40,
-   6
-  ],
+  "bubble": "l",
   "dai": "御朱印帳みくじ",
   "ink": "#2d2b2b",
   "inkL": "#cf3a2c",

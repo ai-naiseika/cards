@@ -181,7 +181,8 @@
   "steps": [
    [
     {
-     "snd": "kasa"
+     "snd": "mizu",
+     "p": 1
     },
     {
      "l": "eda",
@@ -250,7 +251,8 @@
      ]
     },
     {
-     "snd": "fuwa",
+     "snd": "mizu",
+     "p": 1,
      "at": 780
     }
    ],
@@ -338,7 +340,8 @@
      ]
     },
     {
-     "snd": "fuwa"
+     "snd": "mizu",
+     "p": 1
     },
     {
      "l": "yuki",
@@ -405,7 +408,8 @@
      ]
     },
     {
-     "snd": "fuwa",
+     "snd": "mizu",
+     "p": 1,
      "at": 200
     },
     {
@@ -433,7 +437,8 @@
    ],
    [
     {
-     "snd": "pop"
+     "snd": "mizu",
+     "p": 1
     },
     {
      "l": "fuda",
@@ -475,14 +480,16 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "shizuku",
+     "p": 1,
      "at": 900
     }
    ]
   ],
   "after": [
    {
-    "snd": "fuwa"
+    "snd": "mizu",
+    "p": 1
    },
    {
     "l": "atama",
@@ -512,6 +519,7 @@
   ]
  },
  "omikuji": {
+  "snd": "shizuku",
   "kata": "e",
   "anchor": [
    48.6,
@@ -522,10 +530,7 @@
    9
   ],
   "rot": -11,
-  "bubble": [
-   12,
-   62
-  ],
+  "bubble": "dr",
   "dai": "雪の朝みくじ",
   "ink": "#4a3a30",
   "inkL": "#d9584c",

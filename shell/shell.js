@@ -59,13 +59,20 @@ function setWord(p) {
   }
 }
 // おみくじの札：kuwaeru＝殻の描く札／e＝作品の絵の札（殻は、透明の押せる所だけを重ねる）。位置と大きさは舞台の %
+const BUBBLE_DIRS = ['ur', 'ul', 'dr', 'dl', 'r', 'l'];
 function placeSlip(d) {
   const s = $('omkSlip'), o = d.omikuji || {};
   if (pct(o.anchor, 2)) { s.style.left = o.anchor[0] + '%'; s.style.top = o.anchor[1] + '%'; }
   if (pct(o.size, 2)) { s.style.width = o.size[0] + '%'; s.style.height = o.size[1] + '%'; }
   if (Number.isFinite(o.rot) && Math.abs(o.rot) <= 90) s.style.transform = 'translate(-50%,-50%) rotate(' + o.rot + 'deg)';
   s.classList.toggle('own', o.kata === 'e');
-  if (pct(o.bubble, 2)) { const b = $('omkBubble'); b.style.left = o.bubble[0] + '%'; b.style.top = o.bubble[1] + '%'; }
+  // 吹き出しは札の縁に置き、しっぽで札を指す（向きは作品ごと。絵の主役とあいさつの字を避ける向きを選ぶ）
+  if (pct(o.anchor, 2)) {
+    const d = BUBBLE_DIRS.includes(o.bubble) ? o.bubble : 'ur', [ax, ay] = o.anchor, [sw, sh] = pct(o.size, 2) ? o.size : [20, 5], b = $('omkBubble');
+    b.dataset.dir = d;
+    b.style.left = (d === 'r' ? ax + sw / 2 : d === 'l' ? ax - sw / 2 : ax) + '%';
+    b.style.top = (d[0] === 'u' ? ay - sh / 2 : d[0] === 'd' ? ay + sh / 2 : ay) + '%';
+  }
 }
 
 // ---------- 2. カードの表示 ----------
@@ -186,7 +193,9 @@ function openOmikuji() {
   put($('omkN'), state.sample ? '見本なので、何度でも引けます（ためし引き）。' : again ? 'このカードのおみくじは、もう引いたよ。結果は前と同じです。' : 'おみくじは、このカードで1回。結果は、この端末にだけ残ります。');
   $('omkSlip').hidden = true; $('omkBubble').hidden = true;
   $('omkBack').hidden = false; $('omk').hidden = false;
-  SND.play('paper'); setTimeout(() => SND.play('chime'), 260);
+  // おみくじを開く音：紙の音のあとに、その作品の画材と世界の音（design の omikuji.snd。無ければ鐘）
+  const os = (state.design.omikuji || {}).snd;
+  SND.play('paper'); setTimeout(() => SND.play(SND.NAMES.includes(os) ? os : 'chime'), 260);
   if (!REDUCED) $('omk').animate([{ transform: 'translate(-50%,-50%) scale(.3,.06)', opacity: 0.4 }, { transform: 'translate(-50%,-50%) scale(1,.06)', opacity: 1, offset: 0.35 }, { transform: 'translate(-50%,-50%) scale(1,1)', opacity: 1 }], { duration: 560, easing: 'ease-out' });
   $('omkX').focus({ preventScroll: true });
   showBadge();

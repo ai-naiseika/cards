@@ -38,6 +38,20 @@ main{max-width:520px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top))
 .hint{position:absolute;left:50%;top:44%;transform:translateX(-50%);margin:0;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--accent);font-weight:900;font-size:16px;letter-spacing:.08em;box-shadow:0 4px 12px rgba(140,80,120,.18);z-index:5;pointer-events:none}
 .bubble{position:absolute;left:10%;top:31%;margin:0;padding:8px 14px;border-radius:16px;background:#fff;color:var(--accent);font-weight:900;font-size:14px;box-shadow:0 4px 12px rgba(140,80,120,.2);z-index:5;pointer-events:none;white-space:nowrap}
 .bubble::after{content:"";position:absolute;left:14px;bottom:-8px;border:8px solid transparent;border-top-color:#fff;border-bottom:0}
+/* 吹き出しは札のすぐ横に出て、しっぽの先が札を指す（本人 2026-10-23「札から離れていて、どれを押すのか分からない」）。
+   left・top は shell.js が札の縁に置く。向き：ur＝札の右上（しっぽは左下）・ul＝左上・dr＝右下・dl＝左下・r＝右・l＝左。しっぽの先は札の縁から 6px */
+.bubble[data-dir=ur]{transform:translate(-22px,calc(-100% - 14px))}
+.bubble[data-dir=ul]{transform:translate(calc(-100% + 22px),calc(-100% - 14px))}
+.bubble[data-dir=ul]::after{left:auto;right:14px}
+.bubble[data-dir=dr]{transform:translate(-22px,14px)}
+.bubble[data-dir=dl]{transform:translate(calc(-100% + 22px),14px)}
+.bubble[data-dir=dr]::after,.bubble[data-dir=dl]::after{bottom:auto;top:-8px;border-top:0;border-bottom:8px solid #fff}
+.bubble[data-dir=dl]::after{left:auto;right:14px}
+.bubble[data-dir=r]{transform:translate(14px,-50%)}
+.bubble[data-dir=l]{transform:translate(calc(-100% - 14px),-50%)}
+.bubble[data-dir=r]::after,.bubble[data-dir=l]::after{bottom:auto;top:50%;margin-top:-8px;border:8px solid transparent}
+.bubble[data-dir=r]::after{left:-8px;border-left:0;border-right-color:#fff}
+.bubble[data-dir=l]::after{left:auto;right:-8px;border-right:0;border-left-color:#fff}
 
 /* おみくじの札（くわえて持ってくる）。主役の層の中に置くので、主役といっしょに動く */
 .slip{position:absolute;width:20%;height:5%;margin:0;padding:0;border:0;border-radius:4px;background:linear-gradient(180deg,#fffdf8,#efe4d4);box-shadow:0 0 0 2px rgba(138,90,114,.55),0 4px 8px rgba(120,70,90,.25);transform:translate(-50%,-50%) rotate(-8deg);cursor:pointer;pointer-events:auto;z-index:3}

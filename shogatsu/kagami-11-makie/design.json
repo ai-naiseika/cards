@@ -108,7 +108,8 @@
   "steps": [
    [
     {
-     "snd": "chin"
+     "snd": "kinpun",
+     "p": 0.95
     },
     {
      "l": "teri",
@@ -141,10 +142,12 @@
    ],
    [
     {
-     "snd": "chin"
+     "snd": "kinpun",
+     "p": 0.95
     },
     {
-     "snd": "chin",
+     "snd": "kinpun",
+     "p": 0.95,
      "at": 300
     },
     {
@@ -181,7 +184,8 @@
    ],
    [
     {
-     "snd": "fuwa"
+     "snd": "kinpun",
+     "p": 0.95
     },
     {
      "l": "moji",
@@ -205,7 +209,8 @@
    ],
    [
     {
-     "snd": "kotsu"
+     "snd": "kotsu",
+     "p": 0.98
     },
     {
      "l": "fuda",
@@ -227,7 +232,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "kinpun",
+     "p": 0.95,
      "at": 1000
     }
    ]
@@ -261,6 +267,7 @@
   ]
  },
  "omikuji": {
+  "snd": "kinpun",
   "kata": "e",
   "anchor": [
    50,
@@ -270,10 +277,7 @@
    8,
    12
   ],
-  "bubble": [
-   8,
-   70
-  ],
+  "bubble": "dr",
   "dai": "金の三方みくじ",
   "ink": "#e9c873",
   "inkL": "#f6e3a2",

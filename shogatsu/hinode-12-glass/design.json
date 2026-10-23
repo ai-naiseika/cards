@@ -111,7 +111,8 @@
   "steps": [
    [
     {
-     "snd": "chin"
+     "snd": "chin",
+     "p": 1.08
     },
     {
      "l": "kazari",
@@ -141,10 +142,12 @@
    ],
    [
     {
-     "snd": "chin"
+     "snd": "chin",
+     "p": 1.08
     },
     {
-     "snd": "chin",
+     "snd": "garasu",
+     "p": 1.08,
      "at": 600
     },
     {
@@ -204,7 +207,8 @@
    ],
    [
     {
-     "snd": "chin"
+     "snd": "chin",
+     "p": 1.08
     },
     {
      "l": "moji",
@@ -279,7 +283,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "garasu",
+     "p": 1.08,
      "at": 500
     }
    ]
@@ -313,6 +318,7 @@
   ]
  },
  "omikuji": {
+  "snd": "garasu",
   "kata": "e",
   "anchor": [
    50,
@@ -322,10 +328,7 @@
    9,
    12
   ],
-  "bubble": [
-   6,
-   62
-  ],
+  "bubble": "r",
   "dai": "ひかりの粒みくじ",
   "ink": "#3a4a20",
   "inkL": "#e0901a",

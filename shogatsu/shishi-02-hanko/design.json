@@ -172,7 +172,8 @@
   "steps": [
    [
     {
-     "snd": "pon"
+     "snd": "pon",
+     "p": 0.9
     },
     {
      "l": "ato",
@@ -313,15 +314,15 @@
    ],
    [
     {
-     "snd": "kotsu",
+     "snd": "kachi",
      "at": 150
     },
     {
-     "snd": "kotsu",
+     "snd": "kachi",
      "at": 450
     },
     {
-     "snd": "kotsu",
+     "snd": "kachi",
      "at": 750
     },
     {
@@ -594,6 +595,7 @@
     },
     {
      "snd": "pon",
+     "p": 0.9,
      "at": 990
     },
     {
@@ -621,19 +623,22 @@
    ],
    [
     {
-     "snd": "kotsu",
+     "snd": "kachi",
      "at": 1000
     },
     {
-     "snd": "paper",
+     "snd": "kasa",
+     "p": 0.9,
      "at": 1100
     },
     {
      "snd": "pon",
+     "p": 0.9,
      "at": 2200
     },
     {
-     "snd": "chime",
+     "snd": "ponpon",
+     "p": 0.9,
      "at": 2300
     },
     {
@@ -882,7 +887,8 @@
   ],
   "after": [
    {
-    "snd": "kotsu"
+    "snd": "inniku",
+    "p": 0.98
    },
    {
     "l": "ago",
@@ -912,6 +918,7 @@
   ]
  },
  "omikuji": {
+  "snd": "ponpon",
   "kata": "e",
   "anchor": [
    79.63,
@@ -922,10 +929,7 @@
    11
   ],
   "rot": -7,
-  "bubble": [
-   30,
-   64
-  ],
+  "bubble": "dl",
   "dai": "はんこみくじ",
   "ink": "#2d2b2b",
   "inkL": "#d0402e",

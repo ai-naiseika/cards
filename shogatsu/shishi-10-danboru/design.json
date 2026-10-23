@@ -191,14 +191,14 @@
   "steps": [
    [
     {
-     "snd": "kotsu"
+     "snd": "kachi"
     },
     {
-     "snd": "kotsu",
+     "snd": "kachi",
      "at": 260
     },
     {
-     "snd": "kotsu",
+     "snd": "kachi",
      "at": 520
     },
     {
@@ -302,7 +302,7 @@
    ],
    [
     {
-     "snd": "kotsu"
+     "snd": "kachi"
     },
     {
      "l": "futa1",
@@ -343,11 +343,13 @@
      ]
     },
     {
-     "snd": "poyon",
+     "snd": "hako",
+     "p": 0.9,
      "at": 400
     },
     {
-     "snd": "poyon",
+     "snd": "hako",
+     "p": 0.9,
      "at": 900
     },
     {
@@ -447,10 +449,11 @@
    ],
    [
     {
-     "snd": "paper"
+     "snd": "hako",
+     "p": 0.9
     },
     {
-     "snd": "kotsu",
+     "snd": "kachi",
      "at": 700
     },
     {
@@ -517,7 +520,8 @@
    ],
    [
     {
-     "snd": "pop"
+     "snd": "hako",
+     "p": 0.9
     },
     {
      "l": "shita",
@@ -541,7 +545,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "hakoake",
+     "p": 0.87,
      "at": 300
     }
    ]
@@ -653,7 +658,8 @@
   ],
   "after": [
    {
-    "snd": "poyon"
+    "snd": "hako",
+    "p": 0.9
    },
    {
     "l": "atama",
@@ -689,6 +695,7 @@
   ]
  },
  "omikuji": {
+  "snd": "hakoake",
   "kata": "e",
   "anchor": [
    68.61,
@@ -698,10 +705,7 @@
    8,
    11
   ],
-  "bubble": [
-   8,
-   30
-  ],
+  "bubble": "ur",
   "dai": "びっくりみくじ",
   "ink": "#4a3018",
   "inkL": "#c8382e",

@@ -145,7 +145,8 @@
   "steps": [
    [
     {
-     "snd": "kotsu"
+     "snd": "posu",
+     "p": 1.01
     },
     {
      "l": "o",
@@ -203,11 +204,13 @@
      "snd": "suzu"
     },
     {
-     "snd": "kotsu",
+     "snd": "posu",
+     "p": 1.01,
      "at": 200
     },
     {
-     "snd": "kotsu",
+     "snd": "posu",
+     "p": 1.01,
      "at": 450
     },
     {
@@ -281,7 +284,8 @@
    ],
    [
     {
-     "snd": "kotsu"
+     "snd": "posu",
+     "p": 1.01
     },
     {
      "l": "tobiral",
@@ -344,7 +348,8 @@
    ],
    [
     {
-     "snd": "pop"
+     "snd": "hako",
+     "p": 1.04
     },
     {
      "l": "fuda",
@@ -368,7 +373,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "hakoake",
+     "p": 1.07,
      "at": 300
     }
    ]
@@ -438,6 +444,7 @@
   ]
  },
  "omikuji": {
+  "snd": "suzu",
   "kata": "e",
   "anchor": [
    62.59,
@@ -447,10 +454,7 @@
    8,
    11
   ],
-  "bubble": [
-   8,
-   30
-  ],
+  "bubble": "dr",
   "dai": "工作の拝殿みくじ",
   "ink": "#4a3018",
   "inkL": "#d9493a",

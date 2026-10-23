@@ -144,7 +144,8 @@
   "steps": [
    [
     {
-     "snd": "chin"
+     "snd": "hikari",
+     "p": 0.95
     },
     {
      "l": "akari",
@@ -273,10 +274,12 @@
    ],
    [
     {
-     "snd": "kasha"
+     "snd": "kasha",
+     "p": 0.95
     },
     {
      "snd": "kasha",
+     "p": 0.95,
      "at": 1200
     },
     {
@@ -320,7 +323,8 @@
    ],
    [
     {
-     "snd": "kasha"
+     "snd": "kasha",
+     "p": 0.95
     },
     {
      "l": "retsua",
@@ -383,7 +387,8 @@
    ],
    [
     {
-     "snd": "pop"
+     "snd": "hikari",
+     "p": 0.95
     },
     {
      "l": "fuda",
@@ -407,7 +412,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "hikari",
+     "p": 0.95,
      "at": 300
     }
    ]
@@ -491,19 +497,17 @@
   ]
  },
  "omikuji": {
+  "snd": "hikari",
   "kata": "e",
   "anchor": [
    34.91,
-   55.37
+   59.07
   ],
   "size": [
    8,
    11
   ],
-  "bubble": [
-   8,
-   14
-  ],
+  "bubble": "ul",
   "dai": "回り灯籠みくじ",
   "ink": "#2a1636",
   "inkL": "#c8284a",

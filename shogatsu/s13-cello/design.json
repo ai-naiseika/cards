@@ -687,14 +687,15 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "hikari",
      "at": 800
     }
    ]
   ],
   "after": [
    {
-    "snd": "kasha"
+    "snd": "kasha",
+    "p": 1
    },
    {
     "l": "kubi",
@@ -724,6 +725,7 @@
   ]
  },
  "omikuji": {
+  "snd": "hikari",
   "kata": "e",
   "anchor": [
    70.4,
@@ -733,10 +735,7 @@
    12,
    18
   ],
-  "bubble": [
-   40,
-   22
-  ],
+  "bubble": "l",
   "dai": "ごあいさつみくじ",
   "ink": "#2a1636",
   "inkL": "#c8284a",

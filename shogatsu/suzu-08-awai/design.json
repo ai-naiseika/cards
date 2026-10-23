@@ -121,7 +121,8 @@
   "steps": [
    [
     {
-     "snd": "fuwa"
+     "snd": "mizu",
+     "p": 1.04
     },
     {
      "l": "ko",
@@ -228,7 +229,8 @@
    ],
    [
     {
-     "snd": "chime"
+     "snd": "mizu",
+     "p": 1.04
     },
     {
      "l": "kazoku",
@@ -308,7 +310,8 @@
    ],
    [
     {
-     "snd": "fuwa"
+     "snd": "mizu",
+     "p": 1.04
     },
     {
      "l": "haha",
@@ -332,7 +335,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "shizuku",
+     "p": 1.04,
      "at": 400
     }
    ]
@@ -366,6 +370,7 @@
   ]
  },
  "omikuji": {
+  "snd": "suzu",
   "kata": "e",
   "anchor": [
    63.89,
@@ -376,10 +381,7 @@
    11
   ],
   "rot": -23,
-  "bubble": [
-   8,
-   70
-  ],
+  "bubble": "dr",
   "dai": "家族みくじ",
   "ink": "#4a3a30",
   "inkL": "#d9584c",

@@ -448,10 +448,12 @@
    ],
    [
     {
-     "snd": "pop"
+     "snd": "nori",
+     "p": 0.9
     },
     {
-     "snd": "paper",
+     "snd": "nori",
+     "p": 0.9,
      "at": 500
     },
     {
@@ -542,7 +544,8 @@
      "snd": "taiko"
     },
     {
-     "snd": "chime",
+     "snd": "chokin",
+     "p": 0.9,
      "at": 400
     },
     {
@@ -675,6 +678,7 @@
   ]
  },
  "omikuji": {
+  "snd": "chokin",
   "kata": "e",
   "anchor": [
    17.59,
@@ -684,10 +688,7 @@
    8,
    11
   ],
-  "bubble": [
-   44,
-   30
-  ],
+  "bubble": "dr",
   "dai": "唐草みくじ",
   "ink": "#3a1a14",
   "inkL": "#c0283a",

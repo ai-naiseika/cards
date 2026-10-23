@@ -623,7 +623,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "coin8",
+     "p": 1,
      "at": 1100
     },
     {
@@ -751,7 +752,8 @@
      ]
     },
     {
-     "snd": "pop"
+     "snd": "jump8",
+     "p": 1
     },
     {
      "l": "fuda",
@@ -774,7 +776,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "fanfare8",
+     "p": 1,
      "at": 900
     }
    ]
@@ -873,7 +876,8 @@
   ],
   "after": [
    {
-    "snd": "pico"
+    "snd": "pico",
+    "p": 1
    },
    {
     "l": "aruki1",
@@ -903,6 +907,7 @@
   ]
  },
  "omikuji": {
+  "snd": "fanfare8",
   "kata": "e",
   "anchor": [
    85,
@@ -912,10 +917,7 @@
    12,
    15
   ],
-  "bubble": [
-   16,
-   33
-  ],
+  "bubble": "ul",
   "dai": "ぼうけんみくじ",
   "ink": "#ffffff",
   "inkL": "#f7d24a",

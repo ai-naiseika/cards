@@ -101,7 +101,8 @@
   "steps": [
    [
     {
-     "snd": "kasa"
+     "snd": "hasami",
+     "p": 1
     },
     {
      "l": "migi",
@@ -125,7 +126,8 @@
    ],
    [
     {
-     "snd": "kasa"
+     "snd": "hasami",
+     "p": 1
     },
     {
      "l": "migi",
@@ -159,13 +161,15 @@
      ]
     },
     {
-     "snd": "kasa",
+     "snd": "hasami",
+     "p": 1,
      "at": 500
     }
    ],
    [
     {
-     "snd": "paper"
+     "snd": "nori",
+     "p": 1
     },
     {
      "l": "moji",
@@ -198,7 +202,8 @@
    ],
    [
     {
-     "snd": "pop"
+     "snd": "nori",
+     "p": 1
     },
     {
      "l": "fuda",
@@ -220,7 +225,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "chokin",
+     "p": 1,
      "at": 500
     }
    ]
@@ -260,7 +266,8 @@
   ],
   "after": [
    {
-    "snd": "kasa"
+    "snd": "hasami",
+    "p": 1
    },
    {
     "l": "migi",
@@ -290,6 +297,7 @@
   ]
  },
  "omikuji": {
+  "snd": "chokin",
   "kata": "e",
   "anchor": [
    50,
@@ -299,10 +307,7 @@
    12,
    13
   ],
-  "bubble": [
-   60,
-   70
-  ],
+  "bubble": "dr",
   "dai": "紅の紋みくじ",
   "ink": "#3a1a14",
   "inkL": "#b81d2b",

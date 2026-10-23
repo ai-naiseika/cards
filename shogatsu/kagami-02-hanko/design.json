@@ -209,14 +209,17 @@
    ],
    [
     {
-     "snd": "kotsu"
+     "snd": "inniku",
+     "p": 0.98
     },
     {
-     "snd": "kotsu",
+     "snd": "inniku",
+     "p": 0.98,
      "at": 500
     },
     {
-     "snd": "kotsu",
+     "snd": "inniku",
+     "p": 0.98,
      "at": 900
     },
     {
@@ -261,7 +264,8 @@
    ],
    [
     {
-     "snd": "pon"
+     "snd": "pon",
+     "p": 0.91
     },
     {
      "l": "moji",
@@ -287,7 +291,8 @@
    ],
    [
     {
-     "snd": "paper"
+     "snd": "kasa",
+     "p": 0.95
     },
     {
      "l": "futa",
@@ -329,7 +334,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "ponpon",
+     "p": 0.95,
      "at": 1000
     }
    ]
@@ -403,6 +409,7 @@
   ]
  },
  "omikuji": {
+  "snd": "ponpon",
   "kata": "e",
   "anchor": [
    50,
@@ -412,10 +419,7 @@
    9,
    15
   ],
-  "bubble": [
-   8,
-   24
-  ],
+  "bubble": "l",
   "dai": "ぽち袋みくじ",
   "ink": "#2d2b2b",
   "inkL": "#cf3a2c",

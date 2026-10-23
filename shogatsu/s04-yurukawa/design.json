@@ -128,7 +128,8 @@
   "steps": [
    [
     {
-     "snd": "pico"
+     "snd": "pyon",
+     "p": 1
     },
     {
      "l": "hitsuji",
@@ -164,10 +165,12 @@
    ],
    [
     {
-     "snd": "pop"
+     "snd": "pyon",
+     "p": 1
     },
     {
-     "snd": "land",
+     "snd": "poyon",
+     "p": 1,
      "at": 740
     },
     {
@@ -253,7 +256,8 @@
    ],
    [
     {
-     "snd": "pon"
+     "snd": "poyon",
+     "p": 1
     },
     {
      "l": "moji",
@@ -279,7 +283,8 @@
    ],
    [
     {
-     "snd": "poyon"
+     "snd": "poyon",
+     "p": 1
     },
     {
      "l": "hitsuji",
@@ -365,7 +370,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "kirarin",
+     "p": 1,
      "at": 400
     }
    ]
@@ -403,7 +409,8 @@
   ],
   "after": [
    {
-    "snd": "poyon"
+    "snd": "poyon",
+    "p": 1
    },
    {
     "l": "hitsuji",
@@ -498,6 +505,7 @@
   ]
  },
  "omikuji": {
+  "snd": "kirarin",
   "kata": "e",
   "anchor": [
    51.6,
@@ -508,10 +516,7 @@
    7
   ],
   "rot": -8,
-  "bubble": [
-   8,
-   40
-  ],
+  "bubble": "r",
   "dai": "ぴょんみくじ",
   "ink": "#8a5a72",
   "inkL": "#e0607a",

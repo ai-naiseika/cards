@@ -130,15 +130,18 @@
   "steps": [
    [
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1.08,
      "at": 0
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1.08,
      "at": 500
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1.08,
      "at": 1000
     },
     {
@@ -210,15 +213,18 @@
    ],
    [
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1.08,
      "at": 0
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1.08,
      "at": 500
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1.08,
      "at": 1000
     },
     {
@@ -290,7 +296,8 @@
    ],
    [
     {
-     "snd": "kotsu"
+     "snd": "posu",
+     "p": 1.11
     },
     {
      "l": "moji",
@@ -314,7 +321,8 @@
    ],
    [
     {
-     "snd": "kasa"
+     "snd": "kasa",
+     "p": 1.08
     },
     {
      "l": "to",
@@ -336,7 +344,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "hakoake",
+     "p": 1.08,
      "at": 500
     }
    ]
@@ -370,6 +379,7 @@
   ]
  },
  "omikuji": {
+  "snd": "hakoake",
   "kata": "e",
   "anchor": [
    50,
@@ -380,10 +390,7 @@
    7
   ],
   "rot": -5,
-  "bubble": [
-   6,
-   60
-  ],
+  "bubble": "dl",
   "dai": "紙芝居みくじ",
   "ink": "#4a3018",
   "inkL": "#c8323a",

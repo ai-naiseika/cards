@@ -173,7 +173,8 @@
   "steps": [
    [
     {
-     "snd": "posu"
+     "snd": "hako",
+     "p": 1
     },
     {
      "l": "tab",
@@ -559,25 +560,30 @@
      ]
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 500
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 850
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 1200
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 1550
     }
    ],
    [
     {
-     "snd": "posu"
+     "snd": "hako",
+     "p": 1
     },
     {
      "l": "tab",
@@ -963,25 +969,30 @@
      ]
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 500
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 850
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 1200
     },
     {
-     "snd": "posu",
+     "snd": "hako",
+     "p": 1,
      "at": 1550
     }
    ],
    [
     {
-     "snd": "kotsu"
+     "snd": "posu",
+     "p": 1
     },
     {
      "l": "moji",
@@ -1005,10 +1016,12 @@
    ],
    [
     {
-     "snd": "kasa"
+     "snd": "kasa",
+     "p": 1
     },
     {
-     "snd": "pop",
+     "snd": "hako",
+     "p": 1,
      "at": 120
     },
     {
@@ -1031,13 +1044,15 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "hakoake",
+     "p": 1,
      "at": 500
     }
    ]
   ]
  },
  "omikuji": {
+  "snd": "hakoake",
   "kata": "e",
   "anchor": [
    50,
@@ -1048,10 +1063,7 @@
    8
   ],
   "rot": -7,
-  "bubble": [
-   8,
-   74
-  ],
+  "bubble": "ur",
   "dai": "からくりみくじ",
   "ink": "#4a3018",
   "inkL": "#c8323a",

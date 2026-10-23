@@ -115,7 +115,8 @@
   "steps": [
    [
     {
-     "snd": "kasa"
+     "snd": "hasami",
+     "p": 1.11
     },
     {
      "l": "hi",
@@ -160,7 +161,8 @@
    ],
    [
     {
-     "snd": "kasa"
+     "snd": "hasami",
+     "p": 1.11
     },
     {
      "l": "hi",
@@ -205,7 +207,8 @@
    ],
    [
     {
-     "snd": "paper"
+     "snd": "nori",
+     "p": 1.08
     },
     {
      "l": "moji",
@@ -241,7 +244,8 @@
    ],
    [
     {
-     "snd": "kasa"
+     "snd": "hasami",
+     "p": 1.11
     },
     {
      "l": "tsuru",
@@ -275,7 +279,8 @@
      ]
     },
     {
-     "snd": "chime",
+     "snd": "chokin",
+     "p": 1.05,
      "at": 1500
     }
    ]
@@ -309,6 +314,7 @@
   ]
  },
  "omikuji": {
+  "snd": "chokin",
   "kata": "e",
   "anchor": [
    23.33,
@@ -318,10 +324,7 @@
    8,
    11
   ],
-  "bubble": [
-   30,
-   40
-  ],
+  "bubble": "ur",
   "dai": "紙の山みくじ",
   "ink": "#1a1f4a",
   "inkL": "#c8323c",

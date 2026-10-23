@@ -42,7 +42,7 @@ export function create(env) {
     for (const a of items) {
       if (!a || typeof a !== 'object') continue;
       const at = fin(a.at, 0, 20000, 0);
-      if (typeof a.snd === 'string') { setTimeout(() => env.play(a.snd), at); continue; }
+      if (typeof a.snd === 'string') { setTimeout(() => env.play(a.snd, a.p), at); continue; }   // p＝音の高さの倍率（作品ごとの違い）
       const n = a.l;
       if (typeof n !== 'string' || !Object.prototype.hasOwnProperty.call(L, n)) continue;
       const [kf, end] = frames(a, cur[n]);
