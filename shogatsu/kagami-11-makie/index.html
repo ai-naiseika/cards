@@ -22,9 +22,14 @@
 <main id="app">
   <header class="top">
     <p class="kicker" id="kicker">New Year Card</p>
+    <div class="tops">
+    <button id="btnBgm" class="round" type="button" hidden aria-haspopup="dialog" aria-label="BGM をえらぶ">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.2 13V4.6l8.6-1.8v8.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><ellipse cx="5.2" cy="13.3" rx="2.4" ry="1.9" fill="currentColor"/><ellipse cx="13.8" cy="11.4" rx="2.4" ry="1.9" fill="currentColor"/></svg>
+    </button>
     <button id="btnSnd" class="round" type="button" aria-pressed="true" aria-label="音">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h3l4-3v10l-4-3H3z" fill="currentColor"/><path class="wave" d="M13 7c1.2 1.6 1.2 4.4 0 6M15.5 5c2.2 2.8 2.2 7.2 0 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
+    </div>
   </header>
 
   <section id="stage" class="stage" aria-label="さわると動く絵">
@@ -108,11 +113,21 @@
       <a id="shLine" class="sbtn line" href="https://line.me/R/share" target="_blank" rel="noopener noreferrer">LINEで送る</a>
       <button type="button" id="shCopy" class="sbtn">リンクをコピー</button>
       <button type="button" id="shNative" class="sbtn" hidden>ほかのアプリで送る</button>
+      <a id="shLater" class="sbtn" href="../../yotei/">あとで送る（時間になったら知らせる）</a>
       <a id="edOpen" class="linkbtn" href="https://line.me/R/share" target="_blank" rel="noopener noreferrer" hidden>つくったカードを、見てみる ›</a>
     </div>
   </div>
   <p class="tiny" id="edMsg" aria-live="polite"></p>
 </form>
+<div id="bgmBack" class="back2" hidden></div>
+<section id="bgmBox" class="sheet bgm" hidden role="dialog" aria-modal="true" aria-labelledby="bgmH">
+  <div class="shead"><h2 id="bgmH">BGM</h2><button type="button" id="bgmX" class="chip">とじる</button></div>
+  <div class="bgmrow"><span>BGM を鳴らす</span><button type="button" id="bgmOn" class="chip" aria-pressed="true">オン</button></div>
+  <div class="bgmrow"><span>メドレー（つぎつぎに曲が変わる）</span><button type="button" id="bgmMed" class="chip" aria-pressed="false">オフ</button></div>
+  <label class="bgmrow"><span>BGM の大きさ</span><input id="bgmVol" type="range" min="0" max="100" step="5" value="70"></label>
+  <ol id="bgmList" class="bgmlist"></ol>
+  <p class="tiny">音のファイルは使わず、その場で作っています。旋律は、著作権の切れた唱歌・童謡です（歌詞は使っていません）。右上のスピーカーで、効果音と一緒に止まります。</p>
+</section>
 <div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

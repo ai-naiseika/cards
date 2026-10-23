@@ -2,6 +2,7 @@
  "id": "shogatsu",
  "name": "正月",
  "kicker": "New Year Card",
+ "bgm": true,
  "purposes": [
   "g",
   "c",

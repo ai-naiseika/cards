@@ -280,6 +280,59 @@ async function copyLink() {
   catch (e) { const f = $('edUrl'); f.focus(); f.select(); try { document.execCommand('copy'); toast('リンクをコピーしました'); } catch (e2) { toast('リンクを長押ししてコピーしてね'); } }
 }
 
+// ---------- 4b. BGM（本人 2026-10-23「正月の曲を何曲か作って、メドレー機能も」） ----------
+// 部品（bgm.js）は、最初にさわった後に読む（開いた時の重さを増やさない）。音のボタンで効果音と一緒に止まる。
+// 画面が見えていない時と、同じ端末のほかのカードがさわられた時は止まる（クリスマスの港町と同じ作り：見えない時は止める・さわった画面だけが鳴る）
+const PREF_KEY = 'cards-sound-v1';
+const PREF = (() => { try { const o = JSON.parse(localStorage.getItem(PREF_KEY) || '{}') || {}; return { bgm: o.bgm !== false, track: typeof o.track === 'string' ? o.track : '', medley: o.medley === true, vol: Number.isFinite(o.vol) ? Math.max(0, Math.min(100, o.vol)) : 70 }; }
+  catch (e) { return { bgm: true, track: '', medley: false, vol: 70 }; } })();
+const savePref = () => { try { localStorage.setItem(PREF_KEY, JSON.stringify(PREF)); } catch (e) { /* 残せない画面 */ } };
+let BGM = null, bgmP = null, bgmStarted = false;
+function loadBgm() {
+  if (!state.set.bgm) return Promise.resolve(null);
+  if (!bgmP) bgmP = import('./bgm.js').then((m) => { BGM = m.BGM; if (BGM.tracks.some((t) => t.id === PREF.track)) BGM.setTrack(PREF.track); BGM.setMedley(PREF.medley); BGM.setVolume(PREF.vol / 100); BGM.onChange = () => { if (!$('bgmBox').hidden) drawBgm(); }; return BGM; }).catch(() => null);
+  return bgmP;
+}
+// 鳴らすかどうかを、今の決まり（音のボタン・BGM のオン／オフ）に合わせる
+function syncBgm() { if (BGM) BGM.set(SND.audio(), SND.isOn() && PREF.bgm); }
+function startBgm() { if (bgmStarted || !state.set.bgm) return; bgmStarted = true; loadBgm().then(syncBgm); }
+function soundOn() { if (!SND.isOn()) { SND.setOn(true); $('btnSnd').setAttribute('aria-pressed', 'true'); } }
+function drawBgm() {
+  const list = $('bgmList'); list.textContent = '';
+  put($('bgmOn'), PREF.bgm ? 'オン' : 'オフ'); $('bgmOn').setAttribute('aria-pressed', String(PREF.bgm));
+  put($('bgmMed'), PREF.medley ? 'オン' : 'オフ'); $('bgmMed').setAttribute('aria-pressed', String(PREF.medley));
+  $('bgmVol').value = String(PREF.vol);
+  if (!BGM) { list.appendChild(el('li', null, '読みこみ中…')); return; }
+  for (const T of BGM.tracks) {
+    const now = BGM.track === T.id, li = el('li', now ? 'on' : null), tx = el('div'), b = el('button', 'chip', now && !PREF.medley ? 'えらんでいる' : 'これにする');
+    tx.appendChild(el('b', null, T.name)); tx.appendChild(el('small', null, T.desc)); b.type = 'button'; b.setAttribute('aria-pressed', String(now && !PREF.medley));
+    b.addEventListener('click', () => { PREF.track = T.id; PREF.bgm = true; PREF.medley = false; savePref(); BGM.setMedley(false); BGM.setTrack(T.id); soundOn(); syncBgm(); drawBgm(); });
+    li.appendChild(tx); li.appendChild(b); list.appendChild(li);
+  }
+}
+function openBgm() { SND.unlock(); SND.play('tap'); startBgm(); drawBgm(); loadBgm().then(drawBgm); openSheet($('bgmBox'), $('bgmBack')); }
+const closeBgm = () => closeSheet($('bgmBox'), $('bgmBack'));
+// さわった画面だけが鳴る：さわったら、同じ端末のほかのカードへ「いま鳴っているのはここ」と知らせる。知らせを受けた画面は止まる
+const SOUND_ID = Math.random().toString(36).slice(2); let soundBC = null, soundSaid = -1e9;   // 開いてすぐ（1.5秒以内）さわっても知らせる（0 から数えると、開いた直後の最初の知らせが落ちた）
+const otherSaid = (id) => { if (id && id !== SOUND_ID) SND.pause(true); };
+function sayMine() { const n = performance.now(); if (n - soundSaid < 1500) return; soundSaid = n; try { if (soundBC) soundBC.postMessage({ id: SOUND_ID }); localStorage.setItem('cards-sound-now', SOUND_ID + ':' + Date.now()); } catch (e) { /* 知らせられない画面 */ } }
+function setupSound() {
+  try { soundBC = new BroadcastChannel('cards-sound'); soundBC.onmessage = (e) => otherSaid(e.data && e.data.id); } catch (e) { /* 古い端末は、下の記録の知らせだけ */ }
+  addEventListener('storage', (e) => { if (e.key === 'cards-sound-now' && e.newValue) otherSaid(e.newValue.split(':')[0]); });
+  addEventListener('pointerdown', sayMine, { capture: true }); addEventListener('keydown', sayMine, { capture: true });
+  // スマホは、指を離した時（タップ）に音を出せる。最初にさわった時から BGM（どこをさわっても）
+  const touched = () => { SND.unlock(); startBgm(); };
+  for (const ev of ['pointerup', 'touchend', 'click', 'keydown']) addEventListener(ev, touched, { capture: true });
+  const hush = () => SND.pause(document.hidden); document.addEventListener('visibilitychange', hush); addEventListener('pageshow', hush); addEventListener('pagehide', () => SND.pause(true));
+  if (!state.set.bgm) return;
+  $('btnBgm').hidden = false; $('btnBgm').addEventListener('click', openBgm);
+  $('bgmX').addEventListener('click', closeBgm); $('bgmBack').addEventListener('click', closeBgm);
+  $('bgmOn').addEventListener('click', () => { SND.play('tap'); PREF.bgm = !PREF.bgm; savePref(); if (PREF.bgm) soundOn(); syncBgm(); drawBgm(); });
+  $('bgmMed').addEventListener('click', () => { SND.play('tap'); PREF.medley = !PREF.medley; if (PREF.medley) { PREF.bgm = true; soundOn(); } savePref(); if (BGM) BGM.setMedley(PREF.medley); syncBgm(); drawBgm(); });
+  $('bgmVol').addEventListener('input', () => { PREF.vol = +$('bgmVol').value; if (BGM) BGM.setVolume(PREF.vol / 100); });
+  $('bgmVol').addEventListener('change', savePref);
+}
+
 // ---------- 5. 組み立て ----------
 function setupUI() {
   const stage = $('stage');
@@ -304,7 +357,7 @@ function setupUI() {
   $('omkAgain').addEventListener('click', openOmikuji);
   $('omkX').addEventListener('click', closeOmikuji); $('omkBack').addEventListener('click', closeOmikuji);
   $('btnRead').addEventListener('click', () => { SND.unlock(); SND.play('tap'); reveal(true); });
-  $('btnSnd').addEventListener('click', () => { SND.unlock(); const on = !SND.isOn(); SND.setOn(on); $('btnSnd').setAttribute('aria-pressed', String(on)); if (on) SND.play('tap'); toast(on ? '音：オン\n（音が出ない時は、マナーモードを解除してね）' : '音：オフ'); });
+  $('btnSnd').addEventListener('click', () => { SND.unlock(); const on = !SND.isOn(); SND.setOn(on); $('btnSnd').setAttribute('aria-pressed', String(on)); if (on) SND.play('tap'); startBgm(); syncBgm(); toast(on ? '音：オン\n（音が出ない時は、マナーモードを解除してね）' : '音：オフ'); });
   // 目的の切りかえ（この節目で使える物だけ）
   for (const k of state.set.purposes) { const b = el('button', null, state.set.kindName[k]); b.type = 'button'; b.dataset.k = k; b.addEventListener('click', () => { SND.play('tap'); setKind(k); if (!state.edKeep) { const c = readForm(); renderCard(hasBody(c) ? c : sampleCard(state.edKind), !hasBody(c)); } }); $('kinds').appendChild(b); }
   put($('dcName'), state.set.labels.dc);
@@ -316,10 +369,20 @@ function setupUI() {
   editor().addEventListener('input', () => { if (!state.edKeep) { const c = readForm(); if (hasBody(c)) renderCard(c, false); } });
   editor().addEventListener('submit', onSubmit);
   $('shCopy').addEventListener('click', copyLink);
+  // あとで送る：今つくったカードを「書きかけの束」にして、送る予定のページへ（束の詰め方は送る予定の bundle.js。押した時だけ読む）
+  $('shLater').addEventListener('click', async (e) => {
+    e.preventDefault(); SND.play('tap');
+    const c = state.lastCard; if (!c) return;
+    try {
+      const { Bundle } = await import('../yotei/bundle.js');
+      location.href = '../../yotei/#d=' + Bundle.encode({ at: '', n: '', items: [{ d: document.documentElement.dataset.design, c, mm: '' }] });
+    } catch (er) { toast('送る予定のページを開けませんでした'); }
+  });
   $('shNative').addEventListener('click', () => { const c = state.lastCard || state.card || {}; if (navigator.share) navigator.share({ title: titleOf(c), text: state.set.share[c.p] || '', url: $('edUrl').value }).catch(() => {}); });
   $('btnForget').addEventListener('click', () => { OMK.forgetAll(); state.omk = null; showBadge(); toast('おみくじの記録を消しました'); });
   if (LINE_UA) { $('lineBox').hidden = false; $('btnReopen').addEventListener('click', () => { SND.play('tap'); const u = new URL(location.href); u.searchParams.set('openExternalBrowser', '1'); location.href = u.href; }); }
-  document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!$('omk').hidden) closeOmikuji(); else if (!editor().hidden) closeSheet(editor(), $('edBack')); });
+  document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!$('omk').hidden) closeOmikuji(); else if (!$('bgmBox').hidden) closeBgm(); else if (!editor().hidden) closeSheet(editor(), $('edBack')); });
+  setupSound();
   window.addEventListener('hashchange', loadFromHash);
 }
 function removeOpenExternal() {
@@ -339,6 +402,7 @@ async function boot() {
   $('hint').hidden = false;
   setupUI(); loadFromHash();
   window.__fcReady = true;
-  if (TEST) window.__fc = { Card, clean, OMK, state, words: s.omikuji.words, gim: () => gim.state };
+  if (TEST) window.__fc = { Card, clean, OMK, state, words: s.omikuji.words, gim: () => gim.state,
+    bgm: () => ({ loaded: !!BGM, on: !!BGM && BGM.on, playing: !!BGM && BGM.playing, track: BGM ? BGM.track : '', medley: !!BGM && BGM.medley, n: BGM ? BGM.tracks.length : 0, ctx: SND.state() }) };
 }
 boot().catch((e) => { window.__fcError = String(e && e.message || e); toast('カードを開けませんでした'); });

@@ -1,4 +1,4 @@
-// 音：合成だけ（音のファイルなし）。最初に画面にふれてから鳴らす。BGM は無し（最初は切の方針。試作では作らない）
+// 音：合成だけ（音のファイルなし）。最初に画面にふれてから鳴らす。BGM（bgm.js）も、この音の部屋で鳴る（殻が、最初にさわった後に読む）
 // 本人 2026-10-23「タップしたときの音は、作品に合わせたふさわしい音に」。触った時の音は、その作品の画材の道具の音と、図柄の世界の音（作品ごとに選ぶ。表は できた作品/音の割り当て.md）
 // 波・風・人のざわめきのような環境音は、合成だと「激しすぎる」（本人の基準）。録音の素材が決まるまでは、ごく小さな仮の音にしておく（nami・kaze・zawa）
 // 音の大きさ：どの音も、いちばん大きい所（ピーク）がそろうように GAIN で合わせる（検査が OfflineAudioContext で測る）
@@ -12,6 +12,11 @@ export function unlock() {
 }
 export function setOn(v) { on = !!v; }
 export const isOn = () => on;
+// BGM と同じ音の部屋（さわった時に作る・動かす）
+export function audio() { unlock(); return ac; }
+export const state = () => (ac ? ac.state : 'none');
+// 止める・戻す：画面が見えていない時と、同じ端末のほかのカードがさわられた時は、音の部屋ごと止める（BGM も効果音も）
+export function pause(v) { if (!ac) return; try { if (v) ac.suspend(); else if (ac.state !== 'running') ac.resume(); } catch (e) { /* 音が出なくても使える */ } }
 
 // 音の部品。a＝音の場、dest＝出口、t0＝鳴らしはじめ、p＝高さの倍率（作品ごとの違い）、k＝大きさの倍率（GAIN）
 function kit(a, dest, t0, p, k) {
